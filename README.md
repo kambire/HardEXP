@@ -1,0 +1,2 @@
+# HardEXP
+ HardEXP module azerothcore
