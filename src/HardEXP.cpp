@@ -1,13 +1,12 @@
 #include "HardEXP.h"
 #include "Config.h"
 #include "Player.h"
-#include "World.h"
 
 HardEXP::HardEXP() : WorldScript("HardEXP") {}
 
 void HardEXP::OnConfigLoad(bool reload)
 {
-    (void)reload; // Parámetro no usado
+    (void)reload;
     xpRate = sConfigMgr->GetOption<float>("hardEXP.XpRate", 0.1f);
 }
 
@@ -25,7 +24,6 @@ public:
 
     void OnGiveXP(Player* player, uint32& amount, Unit* victim, uint8 xpSource) override
     {
-        // Marcamos los parámetros no usados para evitar advertencias
         (void)player;
         (void)victim;
         (void)xpSource;
@@ -37,7 +35,15 @@ public:
     }
 };
 
+// Define AddSC_HardEXP **ONCE**
 void AddSC_HardEXP()
 {
     new HardEXPPlayer();
+}
+
+// Define AddHardEXPScripts
+void AddHardEXPScripts()
+{
+    new HardEXP(); // Register WorldScript
+    AddSC_HardEXP(); // Register PlayerScript
 }
