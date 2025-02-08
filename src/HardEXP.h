@@ -6,13 +6,16 @@
 class HardEXP : public WorldScript
 {
 public:
-    HardEXP() : WorldScript("HardEXP") {}
+    HardEXP();
 
-    void OnConfigLoad(bool reload) override;
+    void OnConfigLoad(bool reload);
     float GetXpRate() const;
 
 private:
     float xpRate;
 };
+
+// Declaración de la instancia global
+extern HardEXP* sHardEXP;
 
 #endif
