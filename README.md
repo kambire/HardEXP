@@ -1,137 +1,98 @@
-# **hardEXP - Módulo de Tasa de Experiencia Personalizada para AzerothCore**
+---
 
-![AzerothCore](https://img.shields.io/badge/AzerothCore-3.3.5-blue) ![License](https://img.shields.io/badge/License-MIT-green)
+# **hardEXP - Custom Experience Rate Module for AzerothCore**
 
-**hardEXP** es un módulo para **AzerothCore** que permite ajustar la tasa de experiencia global en tu servidor de World of Warcraft. Con este módulo, puedes reducir la experiencia ganada por los jugadores a un valor personalizado, como **0.10x**, para crear un entorno de juego más desafiante.
+![AzerothCore](https://img.shields.io/badge/AzerothCore-3.3.5-blue)  
+![License](https://img.shields.io/badge/License-MIT-green)  
+
+The **hardEXP** module allows you to adjust the global experience rate on your AzerothCore server. With this module, you can set custom experience rates (e.g., 0.1x for 10% of the default XP) to create a more challenging gameplay experience.
 
 ---
 
-## **Características**
-
-- **Tasa de Experiencia Personalizable**: Ajusta la experiencia global a un valor específico (por ejemplo, 0.10x).
-- **Configuración Fácil**: Modifica la tasa de experiencia desde el archivo de configuración.
-- **Compatibilidad**: Funciona con AzerothCore 3.3.5.
+## **Features**
+- **Customizable Global XP Rate**: Adjust the experience rate for all players.
+- **Easy Configuration**: Modify the experience rate via a simple `.conf` file.
+- **Client-Side Compatibility**: Displays the correct XP amount in the client UI.
+- **No Database Changes Required**: Fully script-based and easy to install.
 
 ---
 
-## **Instalación**
+## **Installation**
 
-Sigue estos pasos para instalar el módulo **hardEXP** en tu servidor de AzerothCore.
-
-### **1. Clonar el Repositorio**
-
-Clona este repositorio en la carpeta `modules` de tu instalación de AzerothCore:
-
+### 1. Clone the Module
+Clone this repository into your `modules` directory:
 ```bash
 cd path/to/azerothcore/modules
-git clone https://github.com/tuusuario/hardEXP.git
+git clone https://github.com/yourusername/hardEXP.git
 ```
 
-### **2. Compilar el Módulo**
-
-Recompila el servidor para incluir el módulo:
-
+### 2. Import Configuration
+Copy the configuration file to your server's `etc` directory:
 ```bash
-mkdir -p build
-cd build
+cp modules/hardEXP/conf/mod_hardexp.conf.dist etc/worldserver.conf.d/mod_hardexp.conf
+```
+
+### 3. Recompile the Core
+Recompile AzerothCore to include the new module:
+```bash
+cd path/to/azerothcore/build
 cmake ..
 make -j$(nproc)
 ```
 
-### **3. Configurar el Módulo**
+---
 
-Copia el archivo de configuración de ejemplo y personalízalo:
-
-```bash
-cp modules/hardEXP/hardEXP.conf.dist etc/worldserver.conf.d/hardEXP.conf
-```
-
-Edita el archivo `hardEXP.conf` para ajustar la tasa de experiencia:
+## **Configuration**
+Edit the configuration file (`etc/worldserver.conf.d/mod_hardexp.conf`) to set your desired experience rate:
 
 ```ini
 [hardEXP]
-XpRate = 0.1
-```
-
-### **4. Reiniciar el Servidor**
-
-Reinicia tu servidor de AzerothCore para aplicar los cambios.
-
----
-
-## **Configuración**
-
-El módulo **hardEXP** se configura mediante el archivo `hardEXP.conf`. Aquí están las opciones disponibles:
-
-| Opción   | Descripción                                                                 | Valor por Defecto |
-|----------|-----------------------------------------------------------------------------|-------------------|
-| XpRate   | Tasa de experiencia global. Por ejemplo, 0.1 para 10% de experiencia.      | 0.1               |
-
----
-
-## **Ejemplo de Uso**
-
-Si deseas que los jugadores ganen solo el **10%** de la experiencia normal, configura el archivo `hardEXP.conf` de la siguiente manera:
-
-```ini
-[hardEXP]
+# XP Rate (0.1 = 10% of default XP)
 XpRate = 0.1
 ```
 
 ---
 
-## **Contribuciones**
-
-¡Las contribuciones son bienvenidas! Si tienes ideas para mejorar este módulo, sigue estos pasos:
-
-1. Haz un **fork** del repositorio.
-2. Crea una rama con tu nueva funcionalidad: `git checkout -b nueva-funcionalidad`.
-3. Envía un **pull request** con tus cambios.
+## **How It Works**
+- The module hooks into the `OnGiveXP` event and adjusts the experience gained by players.
+- The adjusted XP amount is displayed correctly in the client UI.
+- The configuration is reloaded automatically when the server restarts.
 
 ---
 
-## **Licencia**
-
-Este proyecto está bajo la licencia **MIT**. Consulta el archivo [LICENSE](LICENSE) para más detalles.
-
----
-
-## **Créditos**
-
-- **Autor**: [kambire]
-- **Repositorio**: [https://github.com/kambire/hardEXP](https://github.com/kambire/hardEXP)
-- **AzerothCore**: [https://www.azerothcore.org/](https://www.azerothcore.org/)
+## **Compatibility**
+- **AzerothCore Version**: 3.3.5
+- **Dependencies**: None
 
 ---
 
-## **Contacto**
-
-Si tienes preguntas o sugerencias, no dudes en contactarme:
-
-- **Email**: [cbenitez@geeks.com.py](mailto:cbenitez@geeks.com.py)
-- **Discord**: [kambire]
-
----
-
-¡Gracias por usar **hardEXP**! Esperamos que este módulo haga que tu servidor de AzerothCore sea más desafiante y divertido. 😊
+## **Contributing**
+Contributions are welcome! If you'd like to improve this module, follow these steps:
+1. Fork the repository.
+2. Create a new branch for your feature or bugfix.
+3. Submit a pull request with a detailed description of your changes.
 
 ---
 
-### **Nota Final**
+## **License**
+This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
 
-Si te gusta este proyecto, ¡no olvides darle una ⭐ en GitHub! Tu apoyo es muy apreciado. 🚀
+---
+
+## **Credits**
+- Developed by **[Geeks Team]**.
+- [AzerothCore](https://www.azerothcore.org/) Framework.
 
 ---
 
-```plaintext
-###   #  ######   ######   ####     ######   ##    #  #######
-      #     ## #       ##   ## ##        ##   ##  ##        #
- ##   #    ##  #   ##   #   ##  ##   ##        # ##    ##  ##
- ######    #####  #######   ##  ##  #######     ##     #####
- ##   #   ##   #   ####     ##  ##   ##        ## #    ##
- ##   #   ##   #   ## ##    ## ##    ##  ##   ##  ##   ##
- ##   #  ##   ##  ###  ##  ####     ######   ###   ## ##
-
-```
+## **Support**
+If you encounter any issues or have questions, feel free to open an issue on the [GitHub repository](https://github.com/kambire/hardEXP).
 
 ---
+
+## **Example**
+With `XpRate = 0.1`, players will receive 10% of the default experience from quests, mobs, and other sources. The client UI will display the adjusted XP amount correctly.
+
+---
+
+Enjoy your custom experience rate with **hardEXP**! 🎮
