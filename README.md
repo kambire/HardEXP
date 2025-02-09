@@ -1,5 +1,3 @@
----
-
 # **hardEXP - Custom Experience Rate Module for AzerothCore**
 
 ![AzerothCore](https://img.shields.io/badge/AzerothCore-3.3.5-blue)  
