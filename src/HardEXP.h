@@ -1,22 +1,20 @@
-#ifndef HARD_EXP_H
-#define HARD_EXP_H
+#ifndef HARDEXP_H
+#define HARDEXP_H
 
 #include "ScriptMgr.h"
 
 class HardEXP : public WorldScript
 {
 public:
-    HardEXP();
+    static HardEXP* Instance();
+    HardEXP(); // ✅ Mueve el constructor a "public"
+
     void OnConfigLoad(bool reload);
     float GetXpRate() const;
 
 private:
-    float xpRate;
+    float m_xpRate;
+    static HardEXP* instance;
 };
-
-extern HardEXP* sHardEXP;
-
-// Add this line
-void AddHardEXPScripts();
 
 #endif
