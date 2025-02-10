@@ -7,7 +7,7 @@ class HardEXP : public WorldScript
 {
 public:
     static HardEXP* Instance();
-    HardEXP(); // ✅ Mueve el constructor a "public"
+    HardEXP();
 
     void OnConfigLoad(bool reload);
     float GetXpRate() const;
